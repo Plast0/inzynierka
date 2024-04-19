@@ -1,0 +1,12 @@
+div {
+    display: grid;
+    
+}
+select {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;  
+}
+p {
+    text-align: center;    
+}
