@@ -36,7 +36,7 @@ const App = () => {
       <Canvas className='model' camera={{far:100, fov: 35, near: 0.1, position:[30,7,20]}}>
         <Experience onBuildingClick={handleBuildingClick}/>
       </Canvas>
-      <Calculator selectedOption={selectedOption} />      
+      <Calculator selectedOption={selectedOption} />           
     </>
   )
 }

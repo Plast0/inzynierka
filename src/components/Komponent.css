@@ -1,7 +1,4 @@
-div {
-    display: grid;
-    
-}
+
 select {
     width: 70%;
     padding: 10px;
@@ -10,3 +7,46 @@ select {
 p {
     text-align: center;    
 }
+button {
+    width: 100%;
+}
+.css-b62m3t-container{
+    color-scheme: light dark;
+    width: 100%;
+    grid-column: select;
+}
+.css-13cymwt-control{
+    color-scheme: light dark;
+    background-color: grey !important;
+    
+}
+.css-1jqq78o-placeholder{
+    color:white !important;
+}
+.css-w9q2zk-Input2{
+    color:white !important;
+}
+.table-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "select select input";
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }  
+  .number-input {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    height: 35px;
+    padding-right: 30px; 
+    box-sizing: border-box;      
+  }
+  
+  .unit {
+    margin-left: -40px; 
+    pointer-events: none; 
+    padding-right: 10px;
+  }
