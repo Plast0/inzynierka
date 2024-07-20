@@ -16,10 +16,21 @@ button {
     grid-column: select;
 }
 .css-13cymwt-control{
-    color-scheme: light dark;
-    background-color: grey !important;
-    
+    background-color: grey !important;    
 }
+.css-t3ipsp-control{
+    background-color: grey !important;    
+}
+.css-1nmdiq5-menu{
+    background-color: grey !important; 
+}
+/* .css-1nmdiq5-menu{
+    background-color: black !important; 
+} */
+/* .css-tj5bde-Svg{
+    background-color: grey !important; 
+} */
+
 .css-1jqq78o-placeholder{
     color:white !important;
 }

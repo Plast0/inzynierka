@@ -4,6 +4,8 @@ import { Canvas } from '@react-three/fiber'
 import { Experience } from "./components/Experience.jsx";
 import Calculator from './components/Calculator.js';
 import { useState } from 'react';
+import { Menu } from './components/Menu.js';
+
 
 const App = () => { 
   const [selectedOption, setSelectedOption] = useState<string>('option1');
@@ -32,11 +34,16 @@ const App = () => {
   };
 
   return (
-    <>
+    <> 
+      <div className='menu-icon'>
+        <p>Kalkulator współczynnika przenikania ciepła</p>
+        <Menu />   
+      </div>      
       <Canvas className='model' camera={{far:100, fov: 35, near: 0.1, position:[30,7,20]}}>
         <Experience onBuildingClick={handleBuildingClick}/>
       </Canvas>
-      <Calculator selectedOption={selectedOption} />           
+      <Calculator selectedOption={selectedOption} />
+                   
     </>
   )
 }

@@ -52,13 +52,14 @@ export const SelectField: FC<Props> = ({ data, valueThickness}) => {
       const handleChange = (selectedOption: SingleValue<{ value: string, label: string, lambda: number, thickness: number }>) => {
         if (selectedOption?.thickness) {
           setInputValue(selectedOption.thickness);
+          selectedOption.thickness=selectedOption.thickness/100;
           valueThickness(selectedOption);
           addTemporaryOptions(selectedOption);                      
         } else {
           setInputValue(inputValue)
           console.log(inputValue)
           if(selectedOption){
-            selectedOption.thickness=inputValue;
+            selectedOption.thickness=inputValue/100;
             addTemporaryOptions(selectedOption);
             valueThickness(selectedOption);          
         }
@@ -67,18 +68,43 @@ export const SelectField: FC<Props> = ({ data, valueThickness}) => {
 
       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.valueAsNumber);
-        temporaryOption.thickness = e.target.valueAsNumber;
+        temporaryOption.thickness = e.target.valueAsNumber/100;
         temporaryOption.label = temporaryLabel;
         temporaryOption.lambda = temporaryLambda;            
         temporaryOption.value = temporaryValue;
         valueThickness(temporaryOption);
       } 
+
+      const customStyles = {               
+        control: styles => ({ ...styles, backgroundColor: "#3a3b3a", color: 'white', border: '1px solid white' }),
+  option: (styles, { isFocused, isSelected }) => {
+    const color = "#838383";
+    return {
+      ...styles,
+      backgroundColor: isSelected
+        ? 'grey'
+        : isFocused
+        ? color
+        : null,
+      color: isSelected
+        ? 'white'
+        : isFocused
+        ? 'white'
+        : 'black',  
+    };
+  },
+  input: styles => ({ ...styles,  color: 'white' }),
+  placeholder: styles => ({ ...styles, color: 'white' }),
+  SingleValue: (styles) => ({ ...styles, color: 'white' }),
+};
+
     
   
     return (
       <>
       <div className="table-container">
         <Creatable
+          styles={customStyles}          
           placeholder="Wybierz material"
           options={choosenOptions}
           noOptionsMessage={() => "nieznaleziono takiej nazwy"}
