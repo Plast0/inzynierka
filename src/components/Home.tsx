@@ -1,4 +1,4 @@
-import './App.css'
+import '../App.css'
 import { Canvas } from '@react-three/fiber'
 import { Experience } from "./Experience.jsx";
 import Calculator from './Calculator.js';

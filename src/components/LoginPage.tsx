@@ -1,22 +1,56 @@
-import React, { useContext } from "react";
-import { FC, useState, useEffect } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import React, { FC, useState, useEffect } from "react";
 import axios from '../API/axios';
+import useAuth from '../Hooks/useAuth'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+type UserProfile = {
+    user: string;
+    password: string;
+    userName: string;
+    id: number;
+}
 
 export const LoginPage: FC = () => {
-    const { setAuthenticated } = useContext(AuthContext);
+    const { setAuthenticated, loginUser, setToken } = useAuth();
     const userRef = React.useRef<HTMLInputElement>(null);
     const errRef = React.useRef<HTMLInputElement>(null);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const [user, setUser] = useState<string>('');
     const [pwd, setPwd] = useState<string>('');
     const [errMsg, setErrMsg] = useState<string>('');
-    const [succes, setSucces] = useState(false);
+    
+
+    const getUserName = async (user:string, pwd: string) => {
+        try{
+            const usernamedata = await axios.get('/user/' + user);
+            console.log("z getUserName " + usernamedata.data )            
+            const tempUser: UserProfile = {
+                user,
+                password: pwd,
+                userName: usernamedata.data.userName,
+                id: usernamedata.data.id                
+            }              
+            console.log( tempUser)
+            loginUser(tempUser);
+            navigate(from, {replace: true})
+        } catch(err){
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        userRef.current?.focus();
+    }, [])
 
     useEffect(() => {
         setErrMsg('');
     },[user, pwd])
 
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
@@ -24,12 +58,15 @@ export const LoginPage: FC = () => {
                 headers: {'Content-Type': 'application/json'},
                 withCredentials: true
             }
-        );
-            const accessToken = response?.data?.accessToklen;
+        );  
+            
+            const accessToken = response?.data;
             setAuthenticated(true);
+            
+            setToken(accessToken);            
             setUser('');
             setPwd('');
-            navigate('/')
+            getUserName(user, pwd);
         } catch(err){
             // if(!err?.response){
             //     setErrMsg('No Server Response');
@@ -40,15 +77,13 @@ export const LoginPage: FC = () => {
             // }else{
             //     setErrMsg('login Fasilde');
             // }
-            setErrMsg('login Fasilde');
+            setErrMsg('login faild');
             errRef.current?.focus();
-        }
-        
-
+        }      
     }
 
     return(
-        <>
+        
         <div className="wrapper">            
             <h1>Zaloguj się na konto</h1>
             <form onSubmit={handleSubmit}>                
@@ -78,8 +113,8 @@ export const LoginPage: FC = () => {
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <p>Nie masz jeszcze konta, <Link to="/register">załóż go</Link></p>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg} </p>
-        </div>
-        </>        
+        </div>       
     )
 }
