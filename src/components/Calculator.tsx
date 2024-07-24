@@ -10,19 +10,34 @@ interface ComponentProps {
 const Calculator:FC<ComponentProps> = ({selectedOption}) =>{
     let content: JSX.Element;
   switch (selectedOption) {
-    case 'option1':
-      content = <p>Ocieplenie</p>;
+    case 'stropDachuPlaskiego':
+      content = <p>stropDachuPlaskiego</p>;
       break;
-    case 'option2':
-      content = <ScianaNosna />;
-      
+    case 'scianaZewnetrzna':
+      content = <ScianaNosna />;      
       break;
-    case 'option3':
-      content = <ScianaNosna />;
+    case 'stropNadPiwnica':
+      content = <p>stropNadPiwnica</p>;
       break;
-    case 'option4':
+    case 'dachSpadowy':
       content = <DachSkosny />;
       break;
+      case 'scianyDzialowe':
+        content = <p>scianyDzialowe</p>;
+        break;
+      case 'strop':
+        content = <p>strop</p>;
+        break;
+      case 'ScianyFundamentowe':
+        content = <p>ScianyFundamentowe</p>;
+        break;
+      case 'PlytaFundamentowa':
+        content = <p>PlytaFundamentowa</p>;
+        break;
+      case 'StropNadwieszony':
+        content = <p>StropNadwieszony</p>;
+        break;
+
     default:
       content = <p>No content</p>;
   }

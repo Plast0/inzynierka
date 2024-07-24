@@ -14,10 +14,10 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Layout />}>
             
-            <Route element={<RequireAuth />}> 
+            {/* <Route element={<RequireAuth />}>  */}
             <Route path="/" element={<Home />} />            
             <Route path="/wyniki" element={<Results />} />
-            </Route>
+            {/* </Route> */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             </Route>
