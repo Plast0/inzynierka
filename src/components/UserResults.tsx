@@ -2,6 +2,7 @@
 import { FC, useEffect, useState } from "react"
 import axios from '../API/axios';
 import useAuth from "../Hooks/useAuth";
+import './UserResults.css'
 
 type Envelop = {
     id: number;
@@ -38,17 +39,17 @@ export const UserResults: FC = () => {
 
     return (
         <>
-            <div>
-                {user ? <p>Użytkownik: {user.userName}</p> : <p>"Loading data..."</p>}
+            <div className="listcontainer">
+                {user ? <h3>Użytkownik: {user.userName}</h3> : <p>"Loading data..."</p>}
                 <p>Zapisane przegrody</p>
                 <ul>
                     {buildingEnvelope?.map((item) => (
-                        <li key={item.id}>
-                            {item.name} wspołczynnik przenikania ciepła: {item.valuU}
+                        <li key={item.id} className="parentlist">
+                            <h4>{item.name} współczynnik przenikania ciepła: {item.valuU}W/m<sup>2</sup>K</h4>
                             <ul>
                                 {item.materials.map((structure) => (
                                     <li key={structure.id}>
-                                        {structure.name} - lambda: {structure.lambda}, grubość: {structure.thicness}
+                                        {structure.name} - lambda: {structure.lambda}W/mk, grubość: {structure.thicness}cm
                                     </li>
                                 ))
                                 }

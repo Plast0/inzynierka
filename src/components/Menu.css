@@ -46,3 +46,6 @@
 .menu-content a:hover{
     background-color: #f1f1f1;
 }
+.menu-icon p {
+    flex:1 0 auto;
+}

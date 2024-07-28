@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from "react";
 import axios from '../API/axios';
+import { isAxiosError } from "axios";
 import useAuth from '../Hooks/useAuth'
+import './LoginPage.css'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 type UserProfile = {
@@ -68,25 +70,28 @@ export const LoginPage: FC = () => {
             setPwd('');
             getUserName(user, pwd);
         } catch(err){
-            // if(!err?.response){
-            //     setErrMsg('No Server Response');
-            // } else if(err.response?.starus === 400){
-            //     setErrMsg('Missing Email or Password');
+            if(isAxiosError(err)){
+                if(!err?.response){
+                    setErrMsg('Brak odpowiedzi serwera');
+                } else if(err.response?.status === 400){
+                    setErrMsg('Błędny adress email lub hasło');
             // } else if(err.response?.status === 401){
             //     setErrMsg('Unauthorized');
-            // }else{
-            //     setErrMsg('login Fasilde');
-            // }
-            setErrMsg('login faild');
-            errRef.current?.focus();
+                }else{
+                    setErrMsg('Logowanie się nie powiodło!');
+                }
+            //setErrMsg('Logowanie się nie powiodło!');
+                errRef.current?.focus();
+            }            
         }      
     }
 
     return(
         
-        <div className="wrapper">            
-            <h1>Zaloguj się na konto</h1>
-            <form onSubmit={handleSubmit}>                
+        <div className="wrapper">
+            <div className="loginform">          
+            <form onSubmit={handleSubmit} >  
+                <h1>Zaloguj się na konto</h1>               
                 <div className="input-box">
                     <label htmlFor="emailaddress">Podaj swój adres email</label>
                 <input 
@@ -111,10 +116,11 @@ export const LoginPage: FC = () => {
                     required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="loginbutton">Login</button>
             </form>
             <p>Nie masz jeszcze konta, <Link to="/register">załóż go</Link></p>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg} </p>
+            </div>
         </div>       
     )
 }

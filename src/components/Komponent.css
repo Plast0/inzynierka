@@ -1,3 +1,11 @@
+:root {
+    --background: #3a3b3a;
+    --text: #d3d3d3;
+    --border: #666;
+    --option-hover: #4a4b4a;
+    --option-selected: #5a5b5a;
+    --single-value: #ffffff;
+  }
 
 select {
     width: 70%;
@@ -15,21 +23,6 @@ button {
     width: 100%;
     grid-column: select;
 }
-.css-13cymwt-control{
-    background-color: grey !important;    
-}
-.css-t3ipsp-control{
-    background-color: grey !important;    
-}
-.css-1nmdiq5-menu{
-    background-color: grey !important; 
-}
-/* .css-1nmdiq5-menu{
-    background-color: black !important; 
-} */
-/* .css-tj5bde-Svg{
-    background-color: grey !important; 
-} */
 
 .css-1jqq78o-placeholder{
     color:white !important;
@@ -60,4 +53,50 @@ button {
     margin-left: -40px; 
     pointer-events: none; 
     padding-right: 10px;
+  }
+
+  .react-select__control {
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    color: var(--text);
+  }
+  
+  .react-select__menu {
+    border: 1px solid var(--border);
+    background-color: var(--background);
+  }
+  
+  .react-select__option {
+    color: var(--text);
+  }
+  
+  .react-select__option--is-focused {
+    background-color: var(--option-hover);
+  }
+  
+  .react-select__option--is-selected {
+    background-color: var(--option-selected);
+    color: var(--single-value);
+  }
+  
+  .react-select__single-value {
+    color: var(--single-value);
+  }
+  
+  .react-select__placeholder {
+    color: var(--text);
+  }
+
+  .correct {
+    color: green;
+    font-weight: bold;
+    border: 2px solid green;
+    border-radius: 2px;
+  }
+
+  .incorrect {
+    color: red;
+    font-weight: bold;
+    border: 2px solid red;
+    border-radius: 2px;
   }

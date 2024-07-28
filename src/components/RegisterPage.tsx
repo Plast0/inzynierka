@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react"
 import axios from "../API/axios"
 import { useLocation, useNavigate } from "react-router-dom";
-
+import './RegisterPage.css'
 
 export const RegisterPage: FC = () => {
 
@@ -44,6 +44,8 @@ export const RegisterPage: FC = () => {
 
     return(
         <>
+        <div className="wrapper">
+            <div className="registerform">            
         <h1>Zarejestruj użytkownika</h1>
         <form onSubmit={registerUser}>
             <div className="input-box">
@@ -115,8 +117,10 @@ export const RegisterPage: FC = () => {
                     required
                     />
             </div>
-            <button type="submit">Załóż konto</button>
+            <button type="submit" className="registerbutton">Załóż konto</button>
         </form>
+        </div>
+        </div>
         </>
     )
 }

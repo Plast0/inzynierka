@@ -14,12 +14,10 @@ export const Menu: FC = () =>{
             <div className="menu-button" onClick={toggleDropdownMenu}>
                 <img className="user-icon" src={Ikona} />
             </div>
-            <div className={`menu-content ${isOpen ? 'show' : ''}` }>
-                {/* <a href="/">Home</a> */}
+            <div className={`menu-content ${isOpen ? 'show' : ''}` }>                
                 <Link to="/">Home</Link>
-                <a href="/Wyniki">Wyniki</a>
-                {/* <a href="/Login">Wyloguj</a> */}
-                <Link to="/Login">Wyloguj</Link>
+                <Link to ="/wyniki">Wyniki</Link>
+                <Link to="/login">Wyloguj</Link>
             </div>
         </div>
     )

@@ -68,7 +68,7 @@ type Structure = {
   
     return (
       <>
-        <p>Sciana Nosna</p>
+        <p>Sciana Zewnętrzna</p>
         <SelectField data={data} valueThickness={getWallThickness} />   
         <br />
         <SelectField data={dataInsulation} valueThickness={getInsulationThickness}/>

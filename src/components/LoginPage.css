@@ -1,0 +1,63 @@
+.wrapper {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginform {
+    width: 400px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid lightslategray;
+    border-radius: 20px;
+    margin-top: 15%;
+}
+
+.loginform h1 {
+    font-size: 2em !important;
+    text-align: center !important;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-width: 300px;
+}
+.input-box>label {
+    padding: 15px;    
+}
+.input-box>input {
+    padding: 15px;
+    margin: 0 15px;  
+    border-radius: 10px;  
+    background-color: #121212;
+    height: 20px;
+}
+
+.loginbutton {
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.loginbutton:hover {
+    background-color: rgb(36, 35, 35);
+    border: 2px solid gray;    
+}
+.loginform p {
+margin: 0;
+}
+.errmsg{
+    color: red;
+    font-size: larger;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid red;
+}
+
+

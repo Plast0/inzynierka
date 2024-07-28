@@ -1,0 +1,25 @@
+.listcontainer ul{
+    list-style: none;
+    padding: 0;
+}
+
+.listcontainer h3{
+    text-align: center;
+}
+
+.parentlist {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.parentlist h4{
+   padding: 5px 0 5px 10px;
+   margin: 0;
+}
+.parentlist ul {
+    list-style: disc;
+    padding: 0 40px ;
+    padding-bottom: 10px;
+}

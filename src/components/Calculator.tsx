@@ -39,7 +39,7 @@ const Calculator:FC<ComponentProps> = ({selectedOption}) =>{
         break;
 
     default:
-      content = <p>No content</p>;
+      content = <p>Wybierz przegrodę</p>;
   }
     return <div>
         {content}

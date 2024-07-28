@@ -43,13 +43,14 @@ export const SaveButton : FC<Props>= ({structureForEnvelope, Ufactor}) => {
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="savebuttoncontainer">
             <input type="text" 
             placeholder="Nazwa przegrody" 
             onChange={(e) => setEnvelopeName(e.target.value)}
             value={envelopename}
-            required />
-            <button type="submit">Zapisz przegrodę.</button>
+            required 
+            className="envelopenamrinput"/>
+            <button type="submit" className="envelopebutton">Zapisz przegrodę</button>
         </form>        
         </>
     )

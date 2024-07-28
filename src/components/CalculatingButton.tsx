@@ -98,9 +98,9 @@ export const CalculatingButton: FC<Props> = ({structureForRseistance, directionO
     return(
         <>
         <button onClick={calculateUFactor}>Oblicz</button>   
-        <p>Wspolczynnik przewodzenia ciepła dla przegrody wynosi = {UFactor}</p>
-        {correct ? <div><p>Współczynnik spełnia wyznaczoną normę</p></div>: <></>}
-        {incorrect ? <div><p>Współczynnik nie spełnia wyznaczonej normy</p></div> : <></>}
+        <p>Wspolczynnik przewodzenia ciepła dla przegrody wynosi = {UFactor}W/m<sup>2</sup>K</p>
+        {correct ? <div className="correct"><p>Współczynnik spełnia wyznaczoną normę</p></div>: <></>}
+        {incorrect ? <div className="incorrect"><p>Współczynnik nie spełnia wyznaczonej normy</p></div> : <></>}
         {correct ? <SaveButton structureForEnvelope={structureForEnvelope} Ufactor={UFactor} />: <></>  } 
         </>
     )

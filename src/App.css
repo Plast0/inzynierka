@@ -24,3 +24,24 @@
 .menu-icon p{
   color: white;
 }
+
+.savebuttoncontainer{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'input input button';
+  grid-gap: 30px;
+}
+
+.envelopenamrinput {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  grid-column: input;
+}
+
+
+.envelopebutton {
+  align-self: center;
+  grid-column: button;
+}

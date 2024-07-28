@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import "./Komponent.css";
 import Creatable from "react-select/creatable";
-import { SingleValue } from "react-select";
+import { SingleValue, StylesConfig } from "react-select";
 
  type Structure = {
   id: string;
@@ -19,11 +19,9 @@ type ChoosenOptions = {
 
 type Props = {
     data:Structure[] | null,
-    //valueThickness : Thickness
-    //valueThickness: (thickness: number[]) => void;
-    //valueThickness: (thickness: number) => void;
     valueThickness: (thickness: ChoosenOptions) => void;
 }
+
 
 export const SelectField: FC<Props> = ({ data, valueThickness}) => {
     const [inputValue, setInputValue] = useState<number | number>(0.000);
@@ -74,30 +72,36 @@ export const SelectField: FC<Props> = ({ data, valueThickness}) => {
         temporaryOption.value = temporaryValue;
         valueThickness(temporaryOption);
       } 
-
-      const customStyles = {               
-        control: styles => ({ ...styles, backgroundColor: "#3a3b3a", color: 'white', border: '1px solid white' }),
-  option: (styles, { isFocused, isSelected }) => {
-    const color = "#838383";
-    return {
-      ...styles,
-      backgroundColor: isSelected
-        ? 'grey'
-        : isFocused
-        ? color
-        : null,
-      color: isSelected
-        ? 'white'
-        : isFocused
-        ? 'white'
-        : 'black',  
-    };
-  },
-  input: styles => ({ ...styles,  color: 'white' }),
-  placeholder: styles => ({ ...styles, color: 'white' }),
-  SingleValue: (styles) => ({ ...styles, color: 'white' }),
+const customStyles: StylesConfig<ChoosenOptions, false> = {
+  control: (base) => ({
+    ...base,
+    borderColor: 'var(--border)',
+    backgroundColor: 'var(--background)',
+    color: 'var(--text)',
+  }),
+  menu: (base) => ({
+    ...base,
+    borderColor: 'var(--border)',
+    backgroundColor: 'var(--background)',
+  }),
+  option: (base, { isFocused, isSelected }) => ({
+    ...base,
+    backgroundColor: isSelected
+      ? 'var(--option-selected)'
+      : isFocused
+      ? 'var(--option-hover)'
+      : 'var(--background)',
+    color: isSelected ? 'var(--single-value)' : 'var(--text)',
+  }),
+  singleValue: (base) => ({
+    ...base,
+    color: 'var(--single-value)',
+  }),
+  placeholder: (base) => ({
+    ...base,
+    color: 'var(--text)',
+  }),
 };
-
     
   
     return (
