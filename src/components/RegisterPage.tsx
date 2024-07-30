@@ -2,10 +2,12 @@ import React, { FC, useEffect, useState } from "react"
 import axios from "../API/axios"
 import { useLocation, useNavigate } from "react-router-dom";
 import './RegisterPage.css'
+import { isAxiosError } from "axios";
 
 export const RegisterPage: FC = () => {
 
     const userRef = React.useRef<HTMLInputElement>(null);
+    const errRef = React.useRef<HTMLInputElement>(null);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,6 +19,7 @@ export const RegisterPage: FC = () => {
     const [userName, setUserName] = useState<string>('')
     const [firstName, setFirstName] = useState<string>('')
     const [lastName, setLastName] = useState<string>('')
+    const [errMsg, setErrMsg] = useState<string>('');
 
     const registerUser = async (e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
@@ -34,8 +37,21 @@ export const RegisterPage: FC = () => {
              setLastName('');
              navigate(from, {replace: true})
         }catch(err){
-            console.log(err);
-        }        
+            if(isAxiosError(err)){
+                if(!err?.response){
+                    setErrMsg('Brak odpowiedzi serwera');
+                } else if(err.response?.status === 400 && err?.response.data.errors.Email){                    
+                    setErrMsg(err?.response.data.errors.Email); 
+                    console.log(err?.response.data.errors.Email);           
+                }else if(err.response?.status === 400 && err?.response.data.errors.Password){
+                    setErrMsg('Hasło musi mieć przynajmniej 8 znaków.'); 
+                    console.log(err?.response.data.errors.Password);
+                }else{
+                    setErrMsg('Rejestracja się nie powiodła');
+                }            
+                errRef.current?.focus();
+            }            
+        }       
     }
 
     useEffect(() => {
@@ -119,6 +135,7 @@ export const RegisterPage: FC = () => {
             </div>
             <button type="submit" className="registerbutton">Załóż konto</button>
         </form>
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg} </p>
         </div>
         </div>
         </>
